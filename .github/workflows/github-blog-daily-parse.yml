@@ -1,0 +1,16 @@
+name: "Daily - GitHub Blog"
+on:
+  workflow_dispatch:
+  schedule: 
+    - cron: '0 0 * * *'
+jobs:
+  manual_rss_feed_execution:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: chrisreddington/rss-parser-action@main
+        with:
+          branch_prefix: 'gh-blog'
+          extension: 'tweet'
+          feed_url: 'https://github.blog/feed/'
+          script_output: 'pull_request'
+          subfolder: 'tweets'
